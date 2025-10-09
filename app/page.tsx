@@ -2,19 +2,21 @@ export default function Page() {
   return (
     <main
       style={{
-        minHeight: '100svh',
-        display: 'grid',
-        placeItems: 'center',
-        backgroundColor: '#f8dd67',
+        minHeight: '120vh',
+        background: '#fff',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
       }}
     >
-      <img
-        src="/logos/CML_logo_black.svg"
-        alt="citymedialab"
-        width={220}
-        height={48}
-        style={{ display: 'block' }}
-      />
+      <h1 style={{ fontSize: 26, fontWeight: 600, marginBottom: 16 }}>
+        Καλωσήρθες 👋
+      </h1>
+      <p style={{ maxWidth: 500, textAlign: 'center', opacity: 0.8 }}>
+        Αυτή είναι η αρχική σελίδα του <strong>QR City</strong>.  
+        Μετά το Splash και το Header θα εμφανίζεται εδώ το Carousel με τα slides.
+      </p>
     </main>
-  );
+  )
 }
