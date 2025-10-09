@@ -1,47 +1,37 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 
-type Props = { durationMs?: number }
-
-export default function Splash({ durationMs = 3000 }: Props) {
+export default function Splash() {
   const [visible, setVisible] = useState(true)
-  const [opacity, setOpacity] = useState(1)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setOpacity(0), durationMs - 350)
-    const t2 = setTimeout(() => setVisible(false), durationMs)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [durationMs])
+    const timer = setTimeout(() => setVisible(false), 3000)
+    return () => clearTimeout(timer)
+  }, [])
 
   if (!visible) return null
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-brand-yellow"
-      style={{ opacity, transition: 'opacity 350ms ease' }}
-      aria-label="Splash screen"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: '#f8dd67',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9999,
+        transition: 'opacity 0.5s ease',
+      }}
     >
-      <div className="flex flex-col items-center gap-6">
-        <Image
-          src="/logos/cafe_logo.svg"
-          alt="Cafe"
-          width={140}
-          height={140}
-          priority
-        />
-        <div className="flex items-center gap-2 text-black">
-          <span className="uppercase tracking-wide text-xs">powered by</span>
-          <Image
-            src="/logos/CML_logo_black.svg"
-            alt="citymedialab"
-            width={130}
-            height={30}
-            priority
-          />
-        </div>
-      </div>
+      <img
+        src="/logos/CML_logo_black.svg"
+        alt="City Media Lab"
+        width={220}
+        height={48}
+        style={{ display: 'block' }}
+      />
     </div>
   )
 }
