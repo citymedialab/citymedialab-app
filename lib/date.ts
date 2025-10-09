@@ -1,11 +1,12 @@
-export function formatGreekDate(date = new Date()): string {
-  const opts: Intl.DateTimeFormatOptions = {
+// lib/date.ts
+export function formatGreekDate(date: Date = new Date()): string {
+  const s = new Intl.DateTimeFormat('el-GR', {
     weekday: 'long',
-    day: 'numeric',
+    day: '2-digit',
     month: 'long',
     year: 'numeric',
-    timeZone: 'Europe/Athens',
-  }
-  const s = new Intl.DateTimeFormat('el-GR', opts).format(date)
+  }).format(date)
+
+  // Πρώτο γράμμα κεφαλαίο (για πιο “editorial” εμφάνιση)
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
