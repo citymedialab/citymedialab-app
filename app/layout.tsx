@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Header from '@/components/Header'
-import Splash from '@/components/Splash'
+
+// ⚠️ Relative imports, επειδή τα components βρίσκονται μέσα στο /app/components
+import Header from './components/Header'
+import Splash from './components/Splash'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,11 +15,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="el">
-      <body className={inter.className}>
+    <html lang="el" className="h-full">
+      <body className={`${inter.className} min-h-screen bg-white antialiased`}>
         <Splash />
         <Header />
-        {children}
+        {/* Δίνουμε “αέρα” κάτω από το fixed header */}
+        <div className="pt-[48px] md:pt-[56px]">
+          {children}
+        </div>
       </body>
     </html>
   )
